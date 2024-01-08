@@ -1,0 +1,61 @@
+<main>
+    <div id="header">
+        <h1>Ranking Board</h1>
+    </div>
+    <div id="leaderboard">
+        <div class="ribbon"></div>
+        <table>
+            {{#each data}}
+            <tr>
+                <td class="number">{{incrementedIndex @index}}</td>
+                <td class="name">{{name.S}}</td>
+                <td class="points">{{total_score.N}}
+                    {{#checkInputValue @index 0}}
+                    <img class="gold-medal"
+                        src="https://github.com/malunaridev/Challenges-iCodeThis/blob/master/4-leaderboard/assets/gold-medal.png?raw=true"
+                        alt="gold medal" />
+                    {{/checkInputValue}}
+                </td>
+                <td class="number">
+                    <a href="#detail_modal" data-toggle="modal"><i class="fas fa-plus fa-xs"></i></a>
+                </td>
+            </tr>
+            {{/each}}
+           
+        </table>
+    </div>
+    <div id="detail_modal" class="modal hide fade modal-xl" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Detailed Scoring</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <ul>
+                        <li>
+                            <h5>
+                                Score 1 : <span>100 </span>
+                            </h5>
+                        </li>
+                         <li>
+                            <h5>
+                                Score 2 : <span>100 </span>
+                            </h5>
+                        </li>
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                        Close
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<script type="text/javascript">
+    jQuery("#detail_modal").modal("hide");
+</script>
