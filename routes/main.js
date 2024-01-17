@@ -27,9 +27,12 @@ router.route("/").get(async (req, res) => {
     const valueB = b["total_score"].N;
     return valueB.localeCompare(valueA);
   });
+  const date = new Date();
   return res.status(200).render("homepage", {
     title: "Ranking Board",
     data: sortedItems,
+    currentDate:
+      (date.getMonth() + 1) + "/" + date.getDate() + "/" + date.getFullYear(),
   });
 });
 
