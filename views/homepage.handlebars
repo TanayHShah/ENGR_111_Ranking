@@ -8,7 +8,7 @@
         </div>
         <div style="display: block;">
             <img src="../public/images/stevens_logo.jpg" width="200">
-            <div >
+            <div style="padding-left: 40px;">
                 <h6>
                     Date : {{currentDate}}
                 </h6>
@@ -23,7 +23,7 @@
             <tr>
                 <td class="number">{{incrementedIndex @index}}</td>
                 <td class="name">{{name.S}}</td>
-                <td class="name">{{name.S}}</td>
+                <td class="name">{{prof_email.S}}</td>
                 <td class="points">{{total_score.N}}
                     {{#checkInputValue @index 0}}
                     <img class="gold-medal"
@@ -32,7 +32,8 @@
                     {{/checkInputValue}}
                 </td>
                 <td class="number">
-                    <a href="#detail_modal" data-toggle="modal"><i class="fas fa-plus fa-xs"></i></a>
+                    <a href="#detail_modal" class="open_modal" data-toggle="modal" data-score_1="{{score_1.N}}"
+                        data-score_2="{{score_2.N}}" data-score_3="{{score_3.N}}"><i class="fas fa-plus fa-xs"></i></a>
                 </td>
             </tr>
             {{/each}}
@@ -52,17 +53,17 @@
                     <ul>
                         <li>
                             <h5>
-                                Score Data Count : <span>100 </span>
+                                Score, Data Count : <span id="modal_score_data"> </span>
                             </h5>
                         </li>
                         <li>
                             <h5>
-                                Remaining Water Score : <span>100 </span>
+                                Score, Remaining Water : <span id="modal_score_water"> </span>
                             </h5>
                         </li>
                         <li>
                             <h5>
-                                Score outlier : <span>100 </span>
+                                Score, Outlier :<span id="modal_score_outlier"> </span>
                             </h5>
                         </li>
                     </ul>
@@ -77,5 +78,17 @@
     </div>
 </main>
 <script type="text/javascript">
-    jQuery("#detail_modal").modal("hide");
+    $(document).ready(function () {
+        $('.open_modal').on('click', function () {
+            var score_1 = $(this).data('score_1');
+            var score_2 = $(this).data('score_2');
+            var score_3 = $(this).data('score_3');
+            console.log(score_1);
+            jQuery("#modal_score_data").html(score_1);
+            jQuery("#modal_score_water").html(score_2);
+            jQuery("#modal_score_outlier").html(score_3);
+
+        });
+        jQuery("#detail_modal").modal("hide");
+    });
 </script>
