@@ -23,9 +23,9 @@ const dynamoDB = new DynamoDBClient(dynamoDBConfig);
 router.route("/").get(async (req, res) => {
   const data = await dynamoDB.send(new ScanCommand(scanParams));
   const sortedItems = data.Items.sort((a, b) => {
-    const valueA = a["total_score"].N;
-    const valueB = b["total_score"].N;
-    return valueB.localeCompare(valueA);
+    const valueA = parseInt(a["total_score"].N);
+    const valueB = parseInt(b["total_score"].N);
+    return valueB - valueA; // Compare as numbers
   });
   const date = new Date();
   return res.status(200).render("homepage", {
